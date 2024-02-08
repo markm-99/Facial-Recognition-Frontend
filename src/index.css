@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "helvetica";
+  font-size: 50px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(89deg, #0471de 0%,  #f4e846 100%)
+}
+
+
+button
+{
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-family: 'sans-serif';
+  background: linear-gradient();
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
