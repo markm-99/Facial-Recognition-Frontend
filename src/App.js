@@ -22,8 +22,8 @@ const app = new Clarifai.App({
 const PAT = '6015c05c055844f493f298a36cd8b402';
 // Specify the correct user_id/app_id pairings
 // Since you're making inferences outside your app's scope
-const USER_ID = 'clarifai';
-const APP_ID = 'main';
+const USER_ID = 'ninjafruit';
+const APP_ID = 'test';
 // Change these to whatever model and image URL you want to use
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
