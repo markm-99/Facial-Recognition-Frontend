@@ -5,11 +5,11 @@ import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import ParticlesBg from 'particles-bg';
-import Clarifai from 'clarifai';
+// import Clarifai from 'clarifai';
 // import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import './App.css';
 import Signin from './components/Signin/Signin';
-
+import Register from './components/Register/Register';
 
 // const app = new Clarifai.App({
 //   apiKey: '9f57432234524598b105ab1281cf95f7'
@@ -97,9 +97,6 @@ import Signin from './components/Signin/Signin';
 // }
 
 
-
-
-
 // onButtonSubmit = () => {
 //     this.setState({imageUrl: this.state.input});
 //     app.models
@@ -111,6 +108,7 @@ import Signin from './components/Signin/Signin';
 // }
 
 class App extends Component {
+    // when user hits 'sign in' will re-direct to this route
     constructor()
     {
         super();
@@ -118,7 +116,8 @@ class App extends Component {
             input: '',
             imageUrl: '',
             box: {},
-            route: 'signin'
+            route: 'signin',
+            isSignedIn: false
         }
     }
 
@@ -141,7 +140,18 @@ class App extends Component {
       
       onRouteChange = (route) => {
         // must wrap objects in {}
-        this.setState({route: 'home'});
+        // dynamically changes 'home' to route so it will adjust according to click
+
+        // create signout logic - when signout route enabled, status isSignedin is False
+        if (route === 'signout')
+        {
+            this.setState({isSignedIn: false})
+        }
+        else if (route === 'home')
+        {
+            this.setState({isSignedIn: true});
+        }
+        this.setState({route: route});
       }
 
   render() {
@@ -150,17 +160,29 @@ class App extends Component {
          <ParticlesBg className='particles'
          color="#ffffff" num={100} type="cobweb" bg={true} />
         <Navigation onRouteChange={this.onRouteChange} />
-        { this.state.route === 'signin' 
+        { this.state.route === 'home'
         // if successful signin, will redirect to the home page
-        ? <Signin onRouteChange={this.onRouteChange} />
-        : <div>
+            // ? <Signin onRouteChange={this.onRouteChange} />
+            // : 
+        ? <div>
             <Logo />
             <Rank/>
             <ImageLinkForm 
             onInputChange={this.onInputChange}
-            onButtonSubmit={this.onButtonSubmit}/>
+            onButtonSubmit={this.onButtonSubmit}
+            />
         <FaceRecognition box = {this.state.box} imageUrl={this.state.imageUrl} />
       </div>
+        : (
+            // when route is sign in, render signin or register component
+            // use onRouteChange prop set to onRouteChange()
+            
+            // when not equal to signin, renders register component
+            // use onRouteChange prop set to onRouteChange()
+            this.state.route === 'signin' 
+            ? <Signin onRouteChange={this.onRouteChange} />
+            : <Register onRouteChange={this.onRouteChange} />
+        ) 
   }
   </div>
   )}
