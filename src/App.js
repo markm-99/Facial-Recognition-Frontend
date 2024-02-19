@@ -155,23 +155,26 @@ class App extends Component {
       }
 
   render() {
+   // destructure instead of 'this.state'
+    const { isSignedIn, imageUrl, route, box } = this.state;
     return (
-      <div className="App">
+  <div className="App">
          <ParticlesBg className='particles'
-         color="#ffffff" num={100} type="cobweb" bg={true} />
-        <Navigation onRouteChange={this.onRouteChange} />
-        { this.state.route === 'home'
+         color="#ffffff" num={100} type="cobweb" bg={true} 
+         />
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+        { route === 'home'
         // if successful signin, will redirect to the home page
             // ? <Signin onRouteChange={this.onRouteChange} />
             // : 
         ? <div>
             <Logo />
-            <Rank/>
+            <Rank />
             <ImageLinkForm 
             onInputChange={this.onInputChange}
             onButtonSubmit={this.onButtonSubmit}
             />
-        <FaceRecognition box = {this.state.box} imageUrl={this.state.imageUrl} />
+        <FaceRecognition box = {box} imageUrl={imageUrl} />
       </div>
         : (
             // when route is sign in, render signin or register component
@@ -179,11 +182,11 @@ class App extends Component {
             
             // when not equal to signin, renders register component
             // use onRouteChange prop set to onRouteChange()
-            this.state.route === 'signin' 
+            route === 'signin' 
             ? <Signin onRouteChange={this.onRouteChange} />
             : <Register onRouteChange={this.onRouteChange} />
         ) 
-  }
+    }
   </div>
   )}
 }
