@@ -127,6 +127,12 @@ class App extends Component {
         }
     }
 
+    // componentDidMount() {
+    //   fetch('http://localhost:3000/')
+    //     .then(response => response.json())
+    //     .then(data => console.log(data))
+    // }
+
     loadUser = (data) => {
       this.setState({user: {
         id: data.id,
@@ -154,6 +160,13 @@ class App extends Component {
         this.setState({box: box});
       }
       
+      onInputChange = (event) => {
+        this.setState({box: event.target.value});
+      }
+
+      onButtonSubmit = () => {
+        this.setState({imageUrl: this.state.input});
+      }
       onRouteChange = (route) => {
         // must wrap objects in {}
         // dynamically changes 'home' to route so it will adjust according to click
