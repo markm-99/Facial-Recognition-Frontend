@@ -112,26 +112,26 @@ class App extends Component {
     {
         super();
         this.state = {
-            input: '',
-            imageUrl: '',
-            box: {},
-            route: 'signin',
-            isSignedIn: false,
-            user: {
-              id: '',
-              name: '',
-              email: '',
-              entries: 0,
-              joined: ''
-            }
+          input: '',
+          imageUrl: '',
+          box: {},
+          route: 'signin',
+          isSignedIn: false,
+          user: {
+            id: '',
+            name: '',
+            email: '',
+            entries: 0,
+            joined: ''
+          }
         }
     }
 
-    // componentDidMount() {
-    //   fetch('http://localhost:3000/')
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    // }
+    componentDidMount() {
+      fetch('http://localhost:3000/')
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
 
     loadUser = (data) => {
       this.setState({user: {

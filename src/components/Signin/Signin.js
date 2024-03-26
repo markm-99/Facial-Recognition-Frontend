@@ -12,14 +12,17 @@ class Signin extends React.Component {
       }
   }
 
+  // listen to onChange event of email
   onEmailChange = (event) => {
     this.setState({signInEmail: event.target.value});
   }
-
+  
+  // listen to onChange event of password 
   onPasswordChange = (event) => {
     this.setState({signInPassword: event.target.value});
-  }
-
+  } 
+  
+  // when submit button works, use submit to fetch signin link properly
   onSubmitSignIn = () => {
     fetch('http://localhost:3000/signin', {
       method: 'POST',
@@ -36,10 +39,7 @@ class Signin extends React.Component {
           this.props.onRouteChange('home');
         }
       })
-
-    console.log(this.state);  
-    this.props.onRouteChange('home');
-  }
+    }
   
   render()
   {
@@ -53,8 +53,7 @@ class Signin extends React.Component {
         <div className="mt3">
           <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
           <input
-
-          className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+          className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
           type="email" 
           name="email-address"  
           id="email-address"
@@ -64,7 +63,8 @@ class Signin extends React.Component {
         </div>
         <div className="mv3">
           <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-          <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+          <input 
+          className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
           type="password" 
           name="password"  
           id="password"
@@ -75,14 +75,15 @@ class Signin extends React.Component {
       <div className="">
         <input 
         // defining function to get called on signin
-        onClick={() => onRouteChange('home')}        
+        onClick={() => onRouteChange('home')}      
         className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
         type="submit" 
         value="Sign in"
         />
       </div>
       <div className="lh-copy mt3">
-        <p onClick={() => onRouteChange('home')} className="b ph3 pv2 input-reset ba b--black grow pointer f6 dib">Register</p>
+        <p onClick={() => onRouteChange('register')} 
+        className="b ph3 pv2 input-reset ba b--black grow pointer f6 dib">Register </p>
       </div>
     </div>
   </main>
